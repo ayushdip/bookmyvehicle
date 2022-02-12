@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+.MuiTypography-root > a {
+  text-decoration: none;
+  color : white;
+}
+.MuiTypography-h6 > a {
+  color : black;
+}

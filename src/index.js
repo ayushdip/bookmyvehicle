@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from '@mui/material';
+import theme from './theme';
+import { StateProvider } from './StateProvider';
+import reducer, { initialState } from './reducer';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <StateProvider initialState={initialState} reducer={reducer}>
+    
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    
+  </StateProvider>,
   document.getElementById('root')
 );
 
