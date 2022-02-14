@@ -45,7 +45,7 @@ function App() {
         <Route path="/dealer/currbook" element={<><Navbar /><DealerCurr /></>}/>
         <Route path="/dealer/profile" element={<><Navbar /><Profile /></>}/>
         <Route path="/dealer/history" element={<><Navbar /><DealerHistory /></>}/>
-        <Route path="/dealer" element={<><Navbar /><DealerHome /></>}/>
+        <Route path="/dealer" element={<><Navbar /><DealerSearch /></>}/>
         <Route path="/driver/requests" element={<><NavbarDriver /><DriverRequest /></>}/>
         <Route path="/driver/upcoming" element={<><NavbarDriver /><DriverUpcoming /></>}/>
         <Route path="/driver/history" element={<><NavbarDriver /><DriverHistory /></>}/>

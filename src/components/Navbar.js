@@ -31,7 +31,7 @@ const Navbar = () => {
             <Grid item sm={2}>
               <Typography variant="p">
               <Link to="/dealer/currBook">
-                My Bookings
+                Upcoming Bookings
               </Link>
               </Typography>
             </Grid>
@@ -79,7 +79,7 @@ const Navbar = () => {
               <ListItem button>
                 <ListItemIcon>
                   <ListItemText>
-                    <Typography variant="h6"><Link to="/dealer/currBook">My Bookings</Link></Typography>
+                    <Typography variant="h6"><Link to="/dealer/currBook">Upcoming Bookings</Link></Typography>
                   </ListItemText>
                 </ListItemIcon>
               </ListItem>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, Typography } from '@material-ui/core'
-import { TextField } from '@mui/material'
+import { CircularProgress, TextField } from '@mui/material'
 import Cities,{States} from './Geography'
 import db, { auth } from '../Firebase'
 import { BrowserRouter, useNavigate } from 'react-router-dom'
@@ -10,8 +10,10 @@ const Register = () => {
     const [open, setOpen] = React.useState(false);
     const [open1, setOpen1] = React.useState(false);
     const [userInfo,setUserInfo] = useState({role : "dealer",state : States[0]});
+    const [spinner,setSpinner] = useState(false);
     const navigate = useNavigate();
     const registerUser = (e) => {
+        setSpinner(true);
         auth.createUserWithEmailAndPassword(userInfo.email,userInfo.password)
         .then((auth)=>{
             if(auth){
@@ -24,6 +26,7 @@ const Register = () => {
                     state : userInfo.state,
                     city : userInfo.city
                 })
+                setSpinner(false);
                 navigate('/');
             }
         })
@@ -91,6 +94,10 @@ const Register = () => {
                 <FormControlLabel value="driver" label="Driver" control={<Radio color="primary" />}></FormControlLabel>
             </RadioGroup>
         </FormControl>
+        {
+            spinner?<CircularProgress />:<></>
+        }
+        
         <Button onClick={registerUser} fullWidth variant='contained' color="primary">Register</Button>
 
     </div>
