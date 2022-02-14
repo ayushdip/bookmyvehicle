@@ -1,5 +1,6 @@
 import { Card, CardContent, Divider, Tab, Tabs, Typography } from '@material-ui/core'
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../Firebase';
@@ -31,6 +32,9 @@ const Home = () => {
     }
   },[user])
   useEffect(()=>{
+    AOS.init();
+  },[])
+  useEffect(()=>{
     if(currUser?.role=="dealer"){
         dispatch({
             type : 'SET_CURRUSER',
@@ -47,7 +51,7 @@ const Home = () => {
     }
   },[currUser])
   return (
-    <div className="Home">
+    <div data-aos="zoom-in" className="Home">
             <Card variant='outlined' style={{maxWidth : "400px",margin : "4vw"}}>
                     <Tabs textColor='primary' indicatorColor='primary' variant='fullWidth' value={value} onChange={handleChange}>
                         <Tab label="Login"></Tab>

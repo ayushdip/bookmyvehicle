@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../StateProvider'
 import Cities, { States } from './Geography';
 import db from '../Firebase';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const DriverHome = () => {
     const [{user},dispatch] = useStateValue();
@@ -24,6 +26,7 @@ const DriverHome = () => {
     const [vehList,setVehList] = useState();
     const [routeList,setRouteList] = useState();
     useEffect(()=>{
+        AOS.init();
         if(!user){
             navigate('/');
         }
@@ -102,6 +105,7 @@ const DriverHome = () => {
     }
   return (
     <div className='DriverHome' style={{display : "flex", marginTop : "5vh", justifyContent : "space-evenly",flexWrap : "wrap"}}>
+        <div data-aos="zoom-in">
         <Card style={{width : "40vw",minWidth : "300px",margin : "1vh"}}>
             <CardContent>
                 <Typography variant="h5" style={{textAlign : "left"}} color="primary">Your Vehicles</Typography>
@@ -131,6 +135,8 @@ const DriverHome = () => {
                 </List>
             </CardContent>
         </Card>
+        </div>
+        <div data-aos="zoom-in">
         <Card style={{width : "40vw",minWidth : "300px"}}>
             <CardContent>
             <Typography variant="h5" style={{textAlign : "left"}} color="primary">Preferred Routes</Typography>
@@ -194,6 +200,7 @@ const DriverHome = () => {
                 </List>
             </CardContent>
         </Card>
+        </div>
     </div>
   )
 }

@@ -1,9 +1,9 @@
 import { Avatar, Button, Card, CardActions, CardContent, Divider, Typography } from '@material-ui/core'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../Firebase'
 import { useStateValue } from '../StateProvider'
-
+import AOS from 'aos';
 const Profile = () => {
     const [{currUser},dispatch] = useStateValue();
     const navigate = useNavigate();
@@ -11,8 +11,11 @@ const Profile = () => {
         await auth.signOut();
         navigate("/");
     }
+    useEffect(()=>{
+        AOS.init();
+    },[])
   return (
-    <div className='Profile' style={{maxWidth : "400px",margin:"auto",marginTop : '2vw', display : "flex",alignItems : "center",justifyContent :"center"}}>
+    <div data-aos="zoom-in" className='Profile' style={{maxWidth : "400px",margin:"auto",marginTop : '2vw', display : "flex",alignItems : "center",justifyContent :"center"}}>
         <Card style={{minWidth : "260px"}}>
             <CardContent>
                 <Typography variant="h5" style={{textAlign : "left"}} color="primary">Your Profile</Typography>

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Cities,{States} from './Geography';
 import DriverList from './DriverList';
 import db from '../Firebase';
+import AOS from 'aos';
 const DealerSearch = () => {
     const [open,setOpen] = useState(false);
     const [index,setIndex] = useState(0);
@@ -63,12 +64,15 @@ const DealerSearch = () => {
       setSearch(true);
     }
     useEffect(()=>{
+        AOS.init();
+    },[])
+    useEffect(()=>{
       setDriverList1([...driverList1,...driverList2]);
 
     },[driverList2])
   return (<>
     <div className='DealerSearch' style={{margin:"2vw",marginTop : '2vw', display : "flex",justifyContent :"flex-start",flexWrap : "wrap"}}>
-        <Card style={{minWidth : "260px",margin : "1vw"}}>
+        <Card data-aos="zoom-in" style={{minWidth : "260px",margin : "1vw"}}>
             <CardContent>
             <FormControl fullWidth variant='standard' style={{marginBottom : "2vw"}}>
             <InputLabel>From State</InputLabel>
@@ -114,7 +118,7 @@ const DealerSearch = () => {
         {
           search && driverList1?.length==0?<p>No drivers found in this route. Try some other route</p>:<></>
         }
-        <div style={{minWidth : "200px",margin:"1vw",display:"flex",flexWrap : "wrap"}}>
+        <div data-aos="zoom-in" style={{minWidth : "200px",margin:"1vw",display:"flex",flexWrap : "wrap"}}>
         {
           driverList1?.filter(function(item, pos) {
             return driverList1?.indexOf(item) == pos;

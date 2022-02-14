@@ -4,6 +4,7 @@ import db from '../Firebase';
 import { useStateValue } from '../StateProvider';
 import firebase from 'firebase';
 import DetailsHelper from './DetailsHelper';
+import AOS from 'aos';
 const DealerCurr = () => {
   const [booked,setBooked] = useState();
   const [{currUser},dispatch] = useStateValue();
@@ -14,6 +15,7 @@ const DealerCurr = () => {
     .orderBy('date','desc')
     .onSnapshot(snap=>setBooked(snap.docs.map(doc=>({id : doc.id,data : doc.data()}))));
     console.log(booked);
+    AOS.init();
   },[])
   const cancelBooking = (id) =>{
     db.collection('Appointments').doc(id).update('status','Cancelled By Dealer');
@@ -28,7 +30,7 @@ const DealerCurr = () => {
           }
           {
             booked?.map((book)=>(
-              <Card style={{marginTop : "1vh"}}>
+              <Card data-aos="zoom-in" style={{marginTop : "1vh"}}>
                 <CardContent>
                     <DetailsHelper email={book?.data?.driverEmail} />
                     <Typography variant="body2" color="textSecondary" style={{textAlign : "left"}}>Route : {book?.data?.from} --- {book?.data?.to}</Typography>

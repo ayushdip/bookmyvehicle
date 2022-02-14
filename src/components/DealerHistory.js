@@ -4,6 +4,7 @@ import DetailsHelper from './DetailsHelper';
 import firebase from 'firebase';
 import db from '../Firebase';
 import { useStateValue } from '../StateProvider';
+import Aos from 'aos';
 
 const DealerHistory = () => {
   const [booked,setBooked] = useState();
@@ -15,11 +16,12 @@ const DealerHistory = () => {
     .orderBy('date','desc')
     .onSnapshot(snap=>setBooked(snap.docs.map(doc=>({id : doc.id,data : doc.data()}))));
     console.log(booked);
+    Aos.init();
   },[])
   return (
-    <div className='dealerHistory' style={{width : "100%",display : "flex",justifyContent:"center",marginTop : "3vh"}}>
+    <div data-aos="zoom-in" className='dealerHistory' style={{width : "100%",display : "flex",justifyContent:"center",marginTop : "3vh"}}>
       <div className="dealerMid" style={{minWidth : "280px",display : "flex",flexDirection : "column"}}>
-          <Typography variant="h4" color="primary">Prevoius Bookings</Typography>
+          <Typography variant="h4" color="primary">Previous Bookings</Typography>
           <Divider />
           {
             booked && booked?.length==0?<Typography variant="p" color="error">You don't have any previous booking. Navigate to Search a Driver !</Typography>:<></>

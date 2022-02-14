@@ -5,13 +5,13 @@ import DetailsHelper from './DetailsHelper';
 import firebase from 'firebase';
 import db from '../Firebase';
 import { useNavigate } from 'react-router-dom';
-
+import AOS from 'aos';
 
 const DriverHistory = () => {
   const [{currUser},dispatch] = useStateValue();
   const [booked,setBooked] = useState();
   useEffect(()=>{
-
+    AOS.init();
     db.collection('Appointments')
     .where('date','<',firebase.firestore.Timestamp.fromDate(new Date()))
     .where('driverEmail','==',currUser?.email)
@@ -20,7 +20,7 @@ const DriverHistory = () => {
     console.log(booked);
   },[])
   return (
-    <div className='driverHistory' style={{width : "100%",display : "flex",justifyContent:"center",marginTop : "3vh"}}>
+    <div data-aos="zoom-in" className='driverHistory' style={{width : "100%",display : "flex",justifyContent:"center",marginTop : "3vh"}}>
       <div className="driverMid" style={{minWidth : "280px",display : "flex",flexDirection : "column"}}>
           <Typography variant="h4" color="primary">Previous Bookings</Typography>
           <Divider />

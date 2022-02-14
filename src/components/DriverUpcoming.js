@@ -4,12 +4,13 @@ import { useStateValue } from '../StateProvider';
 import DetailsHelper from './DetailsHelper';
 import firebase from 'firebase';
 import db from '../Firebase';
-
+import AOS from 'aos';
 const DriverUpcoming = () => {
   const [{currUser},dispatch] = useStateValue();
   const [booked,setBooked] = useState();
   const [cancel,setCancel] = useState();
   useEffect(()=>{
+    AOS.init();
     db.collection('Appointments')
     .where('date','>=',firebase.firestore.Timestamp.fromDate(new Date()))
     .where('driverEmail','==',currUser?.email)
@@ -22,10 +23,11 @@ const DriverUpcoming = () => {
     .where('status','in',['Cancelled By Dealer','Cancelled By Driver'])
     .orderBy('date','desc')
     .onSnapshot(snap=>setCancel(snap.docs.map(doc=>({id : doc.id,data : doc.data()}))));
+    
   },[])
   return (
     <>
-    <div className='driverUpcoming' style={{width : "100%",display : "flex",justifyContent:"center",marginTop : "3vh"}}>
+    <div data-aos='zoom-in' className='driverUpcoming' style={{width : "100%",display : "flex",justifyContent:"center",marginTop : "3vh"}}>
       <div className="driverMid" style={{minWidth : "280px",display : "flex",flexDirection : "column"}}>
           <Typography variant="h4" color="primary">Upcoming Journeys</Typography>
           <Divider />
@@ -50,7 +52,7 @@ const DriverUpcoming = () => {
       </div>
       
     </div>
-    <div className='driverUpcoming' style={{width : "100%",display : "flex",justifyContent:"center",marginTop : "3vh"}}>
+    <div data-aos="zoom-in" className='driverUpcoming' style={{width : "100%",display : "flex",justifyContent:"center",marginTop : "3vh"}}>
       <div className="driverMid" style={{minWidth : "280px",display : "flex",flexDirection : "column"}}>
           <Typography variant="h4" color="secondary">Cancelled Journeys </Typography>
           <Divider />

@@ -5,13 +5,14 @@ import DetailsHelper from './DetailsHelper';
 import firebase from 'firebase';
 import db from '../Firebase';
 import { useNavigate } from 'react-router-dom';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const DriverRequest = () => {
   const [{currUser},dispatch] = useStateValue();
   const [booked,setBooked] = useState();
   const navigate = useNavigate();
   useEffect(()=>{
-
+    AOS.init();
     db.collection('Appointments')
     .where('date','>=',firebase.firestore.Timestamp.fromDate(new Date()))
     .where('driverEmail','==',currUser?.email)
@@ -19,6 +20,7 @@ const DriverRequest = () => {
     .orderBy('date','desc')
     .onSnapshot(snap=>setBooked(snap.docs.map(doc=>({id : doc.id,data : doc.data()}))));
     console.log(booked);
+    
   },[])
   const declineBooking = (id) =>{
       db.collection('Appointments').doc(id).update('status','Cancelled By Driver');
@@ -29,7 +31,7 @@ const DriverRequest = () => {
     navigate('/driver/upcoming');
   }
   return (
-    <div className='driverRequest' style={{width : "100%",display : "flex",justifyContent:"center",marginTop : "3vh"}}>
+    <div data-aos="zoom-in" className='driverRequest' style={{width : "100%",display : "flex",justifyContent:"center",marginTop : "3vh"}}>
       <div className="driverMid" style={{minWidth : "280px",display : "flex",flexDirection : "column"}}>
           <Typography variant="h4" color="primary">Pending Requests</Typography>
           <Divider />
