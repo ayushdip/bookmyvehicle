@@ -12,7 +12,7 @@ const Navbar = () => {
   const [{currUser},dispatch] = useStateValue();
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("xs"));
-  const [toggle,setToggle] = useState(true);
+  const [toggle,setToggle] = useState(false);
   // useEffect(()=>{
   //   if(email)
   //   db.collection('Users').where('email', '==', email).onSnapshot(snapshot=>snapshot.docs.map((doc)=>setCurrUser(doc.data())));
@@ -60,7 +60,7 @@ const Navbar = () => {
               <IconButton onClick={()=>setToggle(true)} style={{color : "white"}}><Dehaze /></IconButton>
             </Grid>
             <Grid item xs={8}>
-              <Typography variant="h5"><Link to="/dealer">Logo</Link></Typography>
+              <Typography variant="h5"><Link to="/dealer">Book My Vehicle</Link></Typography>
             </Grid>
             <Grid item xs={2}>
               <Link to="/dealer/profile">
