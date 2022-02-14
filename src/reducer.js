@@ -1,5 +1,6 @@
 export const initialState = {
-    user : null
+    user : null,
+    booking : null,
 }
 
 const reducer = (state,action) =>{
@@ -13,6 +14,12 @@ const reducer = (state,action) =>{
             return {
                 ...state,
                 currUser : action.currUser
+            }
+        case 'SET_BOOK' : 
+            return {
+                ...state,
+                booking : action.booking,
+                
             }
         default :
             return state;

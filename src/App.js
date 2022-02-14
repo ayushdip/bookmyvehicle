@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
+import BookDriver from './components/BookDriver';
 import DealerCurr from './components/DealerCurr';
 import DealerHistory from './components/DealerHistory';
 import DealerHome from './components/DealerHome';
@@ -31,6 +32,7 @@ function App() {
           type : 'SET_USER',
           user : null,
         })
+        
       }
     })
   },[])
@@ -38,10 +40,11 @@ function App() {
     <Router>
     <div className="App">
       <Routes>
+        <Route path="/dealer/search/book" element={<><Navbar /><BookDriver/></>}/>
+        <Route path="/dealer/search" element={<><Navbar /><DealerSearch /></>}/>
         <Route path="/dealer/currbook" element={<><Navbar /><DealerCurr /></>}/>
         <Route path="/dealer/profile" element={<><Navbar /><Profile /></>}/>
         <Route path="/dealer/history" element={<><Navbar /><DealerHistory /></>}/>
-        <Route path="/dealer/search" element={<><Navbar /><DealerSearch /></>}/>
         <Route path="/dealer" element={<><Navbar /><DealerHome /></>}/>
         <Route path="/driver/requests" element={<><NavbarDriver /><DriverRequest /></>}/>
         <Route path="/driver/upcoming" element={<><NavbarDriver /><DriverUpcoming /></>}/>

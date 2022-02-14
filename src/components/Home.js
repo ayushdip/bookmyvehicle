@@ -23,11 +23,7 @@ const Home = () => {
   const handleChange = (event, newValue)=>{
       setValue(newValue);
   }
-  const logout = () => {
-      if(user){
-          auth.signOut();
-      }
-  }
+  
   useEffect(()=>{
       console.log(user);
     if(user){
