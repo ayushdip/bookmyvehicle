@@ -25,7 +25,7 @@ const NavbarDriver = () => {
           { !isMatch?
           <Grid container alignItems='center'>
             <Grid item sm={4}>
-              <Typography variant="h5"><Link to="/driver">Logo</Link></Typography>
+              <Typography variant="h5"><Link to="/driver">Book My Vehicle</Link></Typography>
             </Grid>
             <Grid item sm={2}>
               <Typography variant="p"><Link to="/driver/requests">Dealer Request</Link></Typography>
