@@ -1,7 +1,7 @@
 # About the App
 This app is a basic app for vehicle-dealer registration. Through this app you dealers and drivers can register their profiles and can book vehicles after using the app. The app frontend is built using React and Material-UI. Animations in frontend is handled using "AOS" library. Backend is handled using firebase and Firestore is used as a Database. This app can be used as a platform for Dealers and Drivers. 
 
-[App Link](https://classroomproject-fe770.web.app/)
+[App Link](https://bookmyvehicle-5eab4.web.app)
 
 To run this project navigate to the project folder and run the commands
 
