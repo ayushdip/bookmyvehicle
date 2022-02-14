@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, Typography } from '@material-ui/core'
 import { CircularProgress, TextField } from '@mui/material'
 import Cities,{States} from './Geography'
 import db, { auth } from '../Firebase'
 import { BrowserRouter, useNavigate } from 'react-router-dom'
+import Aos from 'aos'
 const Register = () => {
     const [index,setIndex] = useState(0);
     const [cityIndex,setCityIndex] = useState('');
@@ -55,9 +56,11 @@ const Register = () => {
     const handleOpen1 = () => {
         setOpen1(true);
     };
-    
+    useEffect(()=>{
+        Aos.init();
+    },[])
   return (
-    <div className="Register">
+    <div data-aos="fade-up" className="Register">
         <TextField id="name" value={userInfo.name} fullWidth label="Name" variant="standard" style={{marginBottom : "1vw"}} onChange={e=>{
             setUserInfo({...userInfo,name : e.target.value})
         }}></TextField>
