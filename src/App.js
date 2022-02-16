@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
 import BookDriver from './components/BookDriver';
+import CreateUser from './components/CreateUser';
 import DealerCurr from './components/DealerCurr';
 import DealerHistory from './components/DealerHistory';
 import DealerHome from './components/DealerHome';
@@ -14,6 +15,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import NavbarDriver from './components/NavbarDriver';
 import Profile from './components/Profile';
+import SignWithEmail from './components/SignWithEmail';
 import { auth } from './Firebase';
 import { useStateValue } from './StateProvider';
 
@@ -22,6 +24,7 @@ function App() {
   useEffect(()=>{
     auth.onAuthStateChanged((authUser)=>{
       if(authUser){
+        console.log(authUser);
         dispatch({
           type : 'SET_USER',
           user : authUser,
@@ -51,6 +54,8 @@ function App() {
         <Route path="/driver/history" element={<><NavbarDriver /><DriverHistory /></>}/>
         <Route path="/driver/profile" element={<><NavbarDriver /><Profile /></>}/>
         <Route path="/driver" element={<><NavbarDriver /><DriverHome /></>}/>
+        <Route path='/login' element={<><SignWithEmail /></>}/>
+        <Route path='/createForm' element={<><CreateUser /></>} />
         <Route path="/" element={<Home />} />
       
       </Routes>
